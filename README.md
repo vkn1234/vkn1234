@@ -1,199 +1,426 @@
-### 직접 답변
+# RHEL 10 시험 예상 과제 (RHCSA EX200)
 
-- 연구에 따르면, NCA - AI Infrastructure and Operations 시험 준비를 위해 학습해야 할 주요 내용은 세 가지 단원으로 나뉩니다: Essential AI Knowledge, AI Infrastructure, AI Operations.
-- AI Infrastructure 단원이 가장 취약한 영역(28%)이므로, 데이터 분석, 모델 평가, 시각화에 집중해야 합니다.
-- AI Operations(49%)와 Introduction to AI(50%)도 보완 필요하며, NVIDIA 소프트웨어와 클러스터 관리 등도 중요합니다.
-
-#### Essential AI Knowledge (38%)
-이 단원은 AI, 머신러닝, 딥러닝의 기초와 NVIDIA 솔루션을 다룹니다. NVIDIA 소프트웨어 스택, 학습/추론 아키텍처, GPU/CPU 비교 등을 배우세요. 예를 들어, [NVIDIA 문서](https://docs.nvidia.com/)에서 CUDA와 TensorRT를 탐구하세요.
-
-#### AI Infrastructure (40%)
-데이터 마이닝, 모델 평가 지표(예: 손실 함수, 정확도), 시각화 기술에 집중하세요. 이 단원은 데이터 분석과 연구 결과 해석을 다룹니다. 데이터 시각화 도구로는 [Tableau](https://www.tableau.com/)나 Matplotlib을 추천합니다.
-
-#### AI Operations (22%)
-AI 데이터 센터 관리, 클러스터 오케스트레이션, GPU 모니터링을 배우세요. Kubernetes와 Slurm 같은 도구를 익히면 유용합니다. [Kubernetes 문서](https://kubernetes.io/docs/home/)를 참고하세요.
-
-이 계획으로 14일간 준비하면 다음 시험에서 성공 가능성을 높일 수 있습니다.
+> 2026년 기준 RHCSA 10(EX200) 시험 예상 과제 정리
 
 ---
 
-### 보고서
+## 1. Understand and use essential tools
 
-#### 소개
-NCA - AI Infrastructure and Operations 인증 시험은 AI 시스템의 인프라와 운영에 대한 지식을 평가하며, 2025년 4월 24일 기준으로 세 가지 주요 단원으로 구성됩니다: Essential AI Knowledge(38%), AI Infrastructure(40%), AI Operations(22%). 사용자의 점수 보고서에 따르면, AI Infrastructure(28%)가 가장 취약한 영역이며, AI Operations(49%)와 Introduction to AI(50%)도 보완이 필요합니다. 이 보고서는 각 단원의 세부 내용을 정리하고, 학습해야 할 실제 내용을 제공하며, 관련 자원을 제안합니다.
+2026년 기준 RHCSA 10(EX200) 시험의 "필수 도구 이해 및 사용(Understand and use essential tools)" 영역은 시스템 관리의 가장 기본이 되는 명령줄 인터페이스(CLI) 숙련도를 평가합니다.
 
-#### Essential AI Knowledge (38%)
-이 단원은 AI 환경에서의 기초 지식을 다룹니다. 주요 주제는 다음과 같습니다:
+RHEL 10 환경에서는 기존의 기본 도구들과 더불어 Flatpak 관리와 같은 현대적인 패키지 관리 방식이 필수 항목으로 강조됩니다.
 
-- **NVIDIA 소프트웨어 스택**: CUDA, cuDNN, TensorRT 같은 NVIDIA의 소프트웨어 구성 요소를 이해하세요. 이는 AI 작업에서 중요한 역할을 합니다.
-- **학습과 추론 아키텍처 요구사항**: 학습(training)과 추론(inference)의 아키텍처 차이를 비교하고, 각 단계의 계산 요구사항을 분석하세요.
-- **AI, 머신러닝, 딥러닝 개념**: AI는 인간처럼 사고하는 시스템, 머신러닝은 데이터에서 학습, 딥러닝은 신경망 기반 학습으로 정의됩니다. 이들의 관계를 명확히 하세요.
-- **AI 발전 요인**: 빅 데이터, 컴퓨팅 파워, 알고리즘 발전 등이 AI 채택을 가속화한 요인으로 연구에 따르면 보입니다.
-- **AI 사용 사례와 산업**: 의료(진단 지원), 금융(사기 탐지), 자율 주행 등 다양한 산업에서의 AI 적용 사례를 배우세요.
-- **NVIDIA 솔루션**: DGX 시스템, GPU 가속기, 소프트웨어 라이브러리의 목적과 사용 사례를 설명하세요.
-- **AI 개발 및 배포 소프트웨어**: 데이터 준비, 모델 학습, 배포, 모니터링을 포함한 생애주기를 이해하세요.
-- **GPU와 CPU 아키텍처 비교**: 병렬 처리 능력, 메모리 대역폭 등에서 GPU의 AI 작업에서의 장점을 비교하세요.
+### 1.1 명령줄 및 파일 관리 (Core CLI Skills)
 
-**추천 자료**: [NVIDIA 문서](https://docs.nvidia.com/), AI 기초 강의([Coursera](https://www.coursera.org/courses?query=artificial%20intelligence)), AI/ML/DL 소개 글([Medium](https://medium.com/@deepthiamballa8/introduction-to-ai-ml-dl-6f8002787f17)).
+가장 기초적인 파일 조작 및 시스템 접근 능력을 평가합니다.
 
-#### AI Infrastructure (40%)
-이 단원은 데이터 분석, 모델 평가, 시각화와 같은 AI 인프라의 실무 기술을 다룹니다. 사용자의 가장 취약한 영역(28%)이므로 집중 학습이 필요합니다. 주요 주제는 다음과 같습니다:
+- **셸 사용 및 구문**: 셸 프롬프트에 접속하여 정확한 구문으로 명령을 실행해야 합니다.
+- **I/O 리다이렉션**: 표준 출력(``>``), 추가(``>>``), 파이프(``|``), 표준 에러 리다이렉션(``2>``) 등을 자유롭게 사용해야 합니다.
+- **파일 작업**: 파일 및 디렉토리의 생성, 삭제, 복사, 이동은 물론 하드 링크 및 소프트(심볼릭) 링크 생성이 포함됩니다.
+- **텍스트 분석**: ``grep``과 **정규 표현식(Regular Expressions)**을 사용하여 텍스트 데이터를 분석하고 필요한 정보를 추출해야 합니다.
 
-- **데이터 분석 및 인사이트 추출**: 데이터 마이닝(예: 분류, 클러스터링)과 시각화를 통해 대규모 데이터셋에서 유의미한 정보를 추출하세요. 연구에 따르면, 데이터 마이닝은 비즈니스 인사이트를 제공하는 데 유용합니다([Astera](https://www.astera.com/type/blog/top-10-data-mining-techniques/)).
-- **모델 성능 비교**: 손실 함수(loss function), 설명된 분산 비율(proportion of explained variance) 같은 통계적 지표를 사용해 모델 성능을 비교하세요. 예를 들어, 분류 문제에서는 정확도(accuracy), 정밀도(precision), 재현율(recall), F1-점수를, 회귀 문제에서는 MAE, MSE를 사용하세요([Analytics Vidhya](https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error-metrics/)).
-- **데이터 분석 수행**: 선임 팀원의 감독 아래 데이터 분석 작업을 수행하는 방법을 익히세요. 데이터 정제, 변환, 통계 분석 단계를 포함합니다.
-- **데이터 시각화**: 전문 소프트웨어(예: [Tableau](https://www.tableau.com/), Matplotlib, Seaborn)를 사용해 그래프, 차트로 데이터 결과를 표현하세요. 연구에 따르면, 시각화는 데이터 해석을 쉽게 만듭니다([DataCamp](https://www.datacamp.com/blog/data-visualization-techniques)).
-- **연구 결과 분석**: 관계, 트렌드, 연구 결과에 영향을 미칠 수 있는 요인을 식별하고 해석하세요. 상관관계, 회귀 분석 등이 포함됩니다.
+### 1.2 아카이브 및 권한 설정
 
-**추천 자료**: 데이터 마이닝 강의([GeeksforGeeks](https://www.geeksforgeeks.org/data-mining-techniques/)), 시각화 튜토리얼([IBM](https://www.ibm.com/think/topics/data-visualization)), ML 평가 지표 가이드([KDnuggets](https://www.kdnuggets.com/2020/05/model-evaluation-metrics-machine-learning.html)).
+- **압축 및 해제**: ``tar``, ``gzip``, ``bzip2`` 등을 사용하여 파일을 아카이브하고 압축하거나 해제하는 능력이 요구됩니다.
+- **권한 관리**: 표준 ``ugo/rwx`` 권한을 나열, 설정 및 변경할 수 있어야 합니다.
+- **원격 접속**: SSH를 사용하여 원격 시스템에 접속하는 기본 도구 사용법이 포함됩니다.
 
-#### AI Operations (22%)
-이 단원은 AI 시스템의 운영 및 관리에 중점을 둡니다. 주요 주제는 다음과 같습니다:
+### 1.3 소프트웨어 관리 (RHEL 10 신규 및 강화 항목)
 
-- **데이터 센터 관리 및 모니터링**: AI 데이터 센터의 에너지 효율, 냉각 시스템, 자원 할당을 관리하는 방법을 배우세요. 연구에 따르면, AI는 데이터 센터 운영을 최적화합니다([McKinsey](https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/ai-power-expanding-data-center-capacity-to-meet-growing-demand)).
-- **클러스터 오케스트레이션 및 작업 스케줄링**: Kubernetes, Slurm 같은 도구를 사용해 AI 클러스터를 관리하고 작업을 스케줄하세요. 연구에 따르면, Kubernetes는 AI 워크로드를 확장하는 데 이상적입니다([Kubernetes](https://kubernetes.io/)).
-- **GPU 모니터링**: GPU 사용률, 온도, 메모리 사용량 같은 주요 측정 항목을 모니터링하세요. NVIDIA DCGM(NVIDIA Data Center GPU Manager)을 활용하세요.
-- **가상화 고려 사항**: 가속 인프라(예: GPU 가상화)의 성능 영향, 호환성을 고려하세요. 연구에 따르면, 가상화는 자원 효율성을 높입니다([Pure Storage](https://www.purestorage.com/knowledge/what-is-ai-orchestration.html)).
+V10 시험에서는 전통적인 RPM 외에도 새로운 배포 방식에 대한 이해가 중요합니다.
 
-**추천 자료**: 데이터 센터 관리 글([Digital Realty](https://www.digitalrealty.com/resources/articles/data-center-ai)), 클러스터 오케스트레이션 튜토리얼([Google Cloud](https://cloud.google.com/kubernetes-engine/docs/integrations/ai-infra)), GPU 모니터링 가이드([NVIDIA](https://docs.nvidia.com/datacenter/dcgm/)).
+- **RPM 및 DNF**: RPM 저장소(Repository) 설정 및 ``dnf``를 이용한 패키지 설치/삭제를 수행합니다.
+- **Flatpak 관리**: Flatpak 저장소 구성 및 소프트웨어 패키지 설치/삭제 능력이 명시적으로 요구됩니다.
 
-#### 학습 계획
-사용자의 점수 보고서를 바탕으로, AI Infrastructure(40%)에 가장 많은 시간을 투자하세요(예: 40% 시간). AI Operations(22%)와 Essential AI Knowledge(38%)도 보완하며, 특히 NVIDIA 관련 주제에 집중하세요. 14일간의 학습 일정은 다음과 같습니다:
+### 1.4 셸 스크립트 작성 (Automation)
 
-| **일정**       | **단원**            | **활동**                                      | **추천 자료**                              |
-|----------------|---------------------|-----------------------------------------------|--------------------------------------------|
-| 1일차–6일차    | AI Infrastructure   | 데이터 마이닝, 모델 평가, 시각화 학습         | [GeeksforGeeks](https://www.geeksforgeeks.org/data-mining-techniques/), [Tableau](https://www.tableau.com/) |
-| 7일차–11일차   | AI Operations       | 데이터 센터 관리, 클러스터 오케스트레이션    | [Kubernetes](https://kubernetes.io/docs/home/), [McKinsey](https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/ai-power-expanding-data-center-capacity-to-meet-growing-demand) |
-| 12일차–13일차  | Essential AI Knowledge | AI 개념, NVIDIA 솔루션 복습                  | [NVIDIA 문서](https://docs.nvidia.com/), [Medium](https://medium.com/@deepthiamballa8/introduction-to-ai-ml-dl-6f8002787f17) |
-| 14일차         | 전체 복습           | 모의 시험, 취약점 복습                       | 시험 가이드, 연습 문제                     |
+단순 명령 실행을 넘어 자동화를 위한 기초 스크립팅 능력을 평가합니다.
 
-#### 결론
-사용자는 AI Infrastructure 단원에 집중하며, 데이터 분석과 모델 평가 기술을 강화해야 합니다. NVIDIA 관련 주제와 실무 운영 기술도 중요하며, 추천 자료를 활용하면 시험 준비를 효과적으로 할 수 있습니다.
+- **기본 스크립트**: 간단한 셸 스크립트를 생성하고 실행해야 합니다.
+- **제어 구조**: ``if``, ``test``, ``[]`` 등을 이용한 조건부 코드 실행과 ``for`` 문과 같은 루프 구조를 사용하여 파일이나 입력을 처리해야 합니다.
+- **입출력 처리**: 스크립트 인자(``$1``, ``$2`` 등) 처리 및 셸 명령의 출력을 스크립트 내에서 활용하는 방법이 포함됩니다.
+
+### 1.5 도움말 및 문서 활용
+
+- **시스템 문서**: ``man``, ``info`` 페이지 및 ``/usr/share/doc``에 위치한 파일을 찾아 읽고 활용하는 능력이 필수입니다. 시험 중 외부 인터넷 사용이 불가능하므로 이 도구들을 통해 설정을 확인하는 연습이 필요합니다.
+
+> 📚 관련 상세 정보 및 실습 안내는 [Red Hat EX200 공식 시험 목표 페이지](https://www.redhat.com/en/services/training/ex200-red-hat-certified-system-administrator-rhcsa-exam)에서 확인할 수 있습니다.
 
 ---
 
-### 주요 인용
-- [Top 10 Data Mining Techniques | Astera](https://www.astera.com/type/blog/top-10-data-mining-techniques/)
-- [Data Visualization Techniques | DataCamp](https://www.datacamp.com/blog/data-visualization-techniques)
-- [11 Important Model Evaluation Metrics | Analytics Vidhya](https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error-metrics/)
-- [Model Evaluation Metrics | KDnuggets](https://www.kdnuggets.com/2020/05/model-evaluation-metrics-machine-learning.html)
-- [AI Power: Expanding Data Center Capacity | McKinsey](https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/ai-power-expanding-data-center-capacity-to-meet-growing-demand)
-- [Kubernetes Documentation](https://kubernetes.io/docs/home/)
-- [NVIDIA Documentation](https://docs.nvidia.com/)
-- [Introduction to AI, ML, DL | Medium](https://medium.com/@deepthiamballa8/introduction-to-ai-ml-dl-6f8002787f17)
-- [Data Visualization | Tableau](https://www.tableau.com/)
-- [Data Mining Techniques | GeeksforGeeks](https://www.geeksforgeeks.org/data-mining-techniques/)
-- [AI Data Center Management | Digital Realty](https://www.digitalrealty.com/resources/articles/data-center-ai)
-- [AI Infrastructure on Google Cloud](https://cloud.google.com/kubernetes-engine/docs/integrations/ai-infra)
-- [AI Orchestration | Pure Storage](https://www.purestorage.com/knowledge/what-is-ai-orchestration.html)
-- [Data Visualization | IBM](https://www.ibm.com/think/topics/data-visualization)
-- [Coursera: AI Courses](https://www.coursera.org/courses?query=artificial%20intelligence)
+## 2. Manage software
+
+2026년 기준 RHCSA 10(EX200) 시험에서 소프트웨어 관리(Manage software) 영역은 기존의 패키지 관리 도구인 DNF와 더불어 새롭게 추가된 Flatpak 관리가 핵심입니다.
+
+### 2.1 RPM 패키지 및 DNF 관리
+
+RHEL 10의 핵심 패키지 관리 도구인 DNF를 능숙하게 다루어야 합니다.
+
+- **저장소(Repository) 구성**: 새로운 RPM 저장소 추가 및 접근 설정을 수행합니다.
+  - ``/etc/yum.repos.d/`` 디렉토리에 ``.repo`` 파일을 생성하거나 ``dnf config-manager --add-repo <URL>`` 명령어를 사용합니다.
+- **패키지 조작**: 패키지의 설치(``install``), 제거(``remove``), 업데이트(``update``) 및 정보 조회(``info``, ``list``) 능력을 평가합니다.
+- **DNF 모듈 및 그룹**: 패키지 그룹 단위 설치(``dnf group install``) 및 AppStream 모듈 관리를 통해 특정 소프트웨어 버전을 관리합니다.
+
+### 2.2 Flatpak 소프트웨어 관리 (V10 신규)
+
+V10 시험의 주요 변화 중 하나로, 샌드박스형 애플리케이션 배포 형식인 Flatpak 관리가 필수 항목이 되었습니다.
+
+#### Flatpak 저장소(Remote) 관리
+
+- Flathub 또는 Red Hat의 공식 OCI 저장소를 원격지로 등록합니다.
+- 명령어: ``flatpak remote-add --if-not-exists <이름> <URL>``
+
+#### 애플리케이션 설치 및 제거
+
+- 특정 애플리케이션 아이디(예: ``org.mozilla.firefox``)를 사용하여 설치하거나 제거합니다.
+- 명령어: ``flatpak install <AppID>``, ``flatpak uninstall <AppID>``
+
+#### 목록 및 권한 확인
+
+- 설치된 Flatpak 앱 목록을 확인(``flatpak list``)하고, 해당 앱의 샌드박스 권한이나 상세 정보를 조회합니다.
+
+### 2.3 주요 관리 작업 및 팁
+
+| 항목 | 설명 |
+|------|------|
+| **영구성(Persistence)** | 시험 중 설정한 모든 저장소 정보와 설치된 패키지는 시스템 재부팅 후에도 정상적으로 작동해야 합니다. |
+| **도움말 활용** | 명령어 옵션이 기억나지 않을 경우 ``man dnf`` 또는 ``flatpak --help`` 등 시스템 내 문서를 적극 활용하십시오. |
+| **Red Hat 서브스크립션** | 실제 시험 환경에서는 ``subscription-manager``를 통해 이미 등록된 상태이거나 로컬 저장소를 활용하는 경우가 많으므로 저장소 설정 방법에 익숙해지는 것이 중요합니다. |
 
 ---
 
-### 직접 답변
+## 3. Create simple shell scripts
 
-- 연구에 따르면, NCA - AI Infrastructure and Operations 시험의 각 단원별 이론은 Essential AI Knowledge, AI Infrastructure, AI Operations로 나뉩니다.  
-- Essential AI Knowledge는 AI 기본 개념과 NVIDIA 소프트웨어를 다루며, AI Infrastructure는 데이터 분석과 모델 평가에 초점, AI Operations는 데이터 센터 관리와 GPU 모니터링을 다룹니다.  
-- 사용자의 취약한 영역(예: AI Infrastructure 28%)을 보완하려면, 데이터 시각화와 모델 성능 지표를 집중 학습하세요.
+2026년 기준 RHCSA 10(EX200) 시험에서 **셸 스크립트 작성(Create simple shell scripts)**은 반복적인 관리 작업을 자동화하는 능력을 평가하는 핵심 항목입니다. 시험에서는 복잡한 프로그래밍보다는 조건문, 루프, 인자 처리를 활용한 실무형 스크립트 작성을 요구합니다.
 
-#### Essential AI Knowledge (38%)
-- AI, 머신러닝, 딥러닝의 정의와 차이를 배우세요. 예를 들어, AI는 광범위한 분야, 머신러닝은 데이터 학습, 딥러닝은 신경망 기반 학습입니다.  
-- NVIDIA 소프트웨어(CUDA, TensorRT)와 GPU 아키텍처의 장점을 이해하세요. 연구에 따르면, GPU는 병렬 처리에 적합합니다 ([NVIDIA Documentation](https://docs.nvidia.com)).
+### 3.1 스크립트 기본 구성
 
-#### AI Infrastructure (40%)
-- 데이터 마이닝과 시각화(예: Tableau, Matplotlib)를 통해 인사이트를 추출하세요. 모델 성능은 정확도, 손실 함수로 비교합니다.  
-- 연구 결과의 관계와 트렌드를 분석하는 방법을 배우세요. 이 영역은 사용자의 가장 취약한 부분(28%)이므로 집중하세요.
+모든 스크립트는 실행 가능한 형태여야 하며, 올바른 인터프리터 경로를 포함해야 합니다.
 
-#### AI Operations (22%)
-- 데이터 센터 관리와 클러스터 오케스트레이션(Kubernetes, Slurm)을 배우세요. GPU 모니터링(사용률, 온도)도 중요합니다.  
-- 가상화 기술(vGPU, MIG)의 이점과 도전을 이해하세요.
+- **Shebang**: 스크립트 첫 줄에 ``#!/bin/bash``를 반드시 포함해야 합니다.
+- **실행 권한**: ``chmod +x scriptname.sh``를 통해 실행 권한을 부여해야 점수가 인정됩니다.
 
-다음 14일간 이 계획으로 학습하면 시험 준비에 큰 도움이 될 것입니다.
+### 3.2 필수 제어 구조 (기출 핵심)
+
+시험 문제에서 주로 요구하는 세 가지 구조는 다음과 같습니다.
+
+#### A. 인자 처리 및 변수 활용
+
+- 스크립트 실행 시 전달되는 인자(``$1``, ``$2`` 등)를 처리하는 능력입니다.
+- **예시**: 특정 사용자 이름을 인자로 받아 계정을 생성하는 스크립트.
+
+#### B. 조건문 (if/test)
+
+- 파일의 존재 여부, 문자열 일치, 숫자 비교 등을 수행합니다.
+- **기출 유형**: "전달된 인자가 none이면 usage 메시지를 출력하고, 파일 ``/etc/resolv.conf``가 존재하면 해당 내용을 출력하라."
+- **핵심 구문**: ``if [ -f /path/to/file ]; then ... fi``
+
+#### C. 루프 (for/while)
+
+- 목록이나 범위 내에서 반복 작업을 수행합니다.
+- **기출 유형**: "제공된 텍스트 파일 내의 모든 사용자 목록에 대해 특정 디렉토리를 생성하라."
+- **핵심 구문**: ``for user in `$(cat userlist.txt)`; do ... done``
+
+### 3.3 입출력 및 명령 활용
+
+- **입력 처리**: 사용자로부터 입력을 받거나(``read``), 파일의 내용을 읽어와야 합니다.
+- **명령 결과 활용**: ``$(command)`` 구문을 사용하여 명령어의 실행 결과를 변수에 저장하고 활용해야 합니다.
+- **I/O 리다이렉션**: 스크립트 내에서 에러 메시지를 표준 에러(``2>``)로 보내거나 로그 파일에 기록하는 작업이 포함될 수 있습니다.
+
+### 3.4 실전 연습 예시
+
+다음은 RHCSA 시험 수준의 전형적인 연습 과제입니다.
+
+> **과제**: ``/root/script.sh``를 작성하십시오. 이 스크립트는 첫 번째 인자로 전달된 경로의 파일이 존재하면 "Exists"를 출력하고, 존재하지 않으면 "Not Found"를 출력해야 합니다. 인자가 전달되지 않은 경우 에러 메시지를 출력하고 종료해야 합니다.
+
+### 3.5 주의 사항
+
+- **경로 지정**: 문제에서 요구하는 특정 디렉토리(예: ``/usr/local/bin``)에 스크립트를 배치해야 합니다.
+- **검증**: 작성 후 다양한 조건(인자 있음/없음 등)으로 직접 실행하여 결과가 문제 요구 사항과 일치하는지 반드시 확인하십시오.
 
 ---
 
-### 단원별 이론 정리 보고서
+## 4. Operate running systems
 
-#### 소개
-NCA - AI Infrastructure and Operations 인증 시험은 AI 시스템의 인프라와 운영에 대한 지식을 평가하며, 2025년 4월 24일 기준으로 세 가지 주요 단원으로 구성됩니다: Essential AI Knowledge(38%), AI Infrastructure(40%), AI Operations(22%). 사용자의 점수 보고서에 따르면, AI Infrastructure(28%)가 가장 취약한 영역이며, AI Operations(49%)와 Introduction to AI(50%)도 보완이 필요합니다. 이 보고서는 각 단원의 세부 이론을 정리하고, 학습해야 할 내용을 제공하며, 관련 자원을 제안합니다. 연구에 따르면, 이론 정리는 시험 준비에 효과적입니다.
+2026년 기준 RHCSA 10 (EX200) 시험의 시스템 운영(Operate running systems) 영역은 부팅 프로세스 제어, 서비스 관리 및 자원 모니터링 능력을 평가합니다. RHEL 10 환경에서는 특히 **Systemd** 활용 능력이 핵심입니다.
 
-#### Essential AI Knowledge (38%)
-이 단원은 AI 환경에서의 기초 지식을 다룹니다. 주요 이론은 다음과 같습니다:
+### 4.1 서비스 및 부팅 타겟 관리
 
-- **NVIDIA 소프트웨어 스택**: NVIDIA는 AI 작업을 위한 소프트웨어 스택을 제공하며, CUDA는 GPU 프로그래밍을 위한 병렬 컴퓨팅 플랫폼 및 API입니다. cuDNN은 GPU 가속을 위한 딥 뉴럴 네트워크 라이브러리, TensorRT는 고성능 딥러닝 추론 최적화 및 런타임, NVIDIA NGC는 AI, 데이터 사이언스, HPC를 위한 GPU 최적화 소프트웨어 카탈로그를 포함합니다. 연구에 따르면, 이 스택은 AI 워크로드를 가속화합니다 ([NVIDIA Documentation](https://docs.nvidia.com)).
+시스템 서비스의 상태를 제어하고 부팅 시 자동 실행 여부를 설정해야 합니다.
 
-- **학습과 추론 아키텍처 요구사항**: 학습(training)은 대규모 데이터셋과 복잡한 모델 처리를 위한 높은 계산 능력과 대용량 메모리가 필요하며, 다중 GPU 또는 분산 시스템에서 수행됩니다. 추론(inference)은 실시간 예측을 위한 속도와 효율성에 중점, 최적화된 모델과 낮은 지연 시간을 목표로 합니다. 연구에 따르면, 학습은 고성능 하드웨어, 추론은 엣지 디바이스에서 실행됩니다.
+- **서비스 제어**: ``systemctl``을 사용하여 서비스 시작, 중지, 재시작 및 상태 확인을 수행합니다.
+- **부팅 시 활성화**: 서비스의 자동 실행(``enable``/``disable``) 및 마스킹(``mask``) 처리를 수행합니다.
+- **부팅 타겟 변경**: 기본 부팅 타겟(그래픽 모드 ``graphical.target`` 또는 텍스트 모드 ``multi-user.target``)을 확인하고 변경합니다.
 
-- **AI, 머신러닝, 딥러닝 개념**: AI는 인간 지능을 필요로 하는 작업을 수행하는 시스템을 만드는 광범위한 분야, 머신러닝은 데이터에서 학습하여 예측이나 결정을 내리는 AI의 하위 분야, 딥러닝은 신경망을 사용하는 ML의 하위 분야로 정의됩니다. 연구에 따르면, 이들의 관계는 계층적이며, 딥러닝은 최근 AI 발전의 핵심입니다.
+### 4.2 부팅 프로세스 및 복구 (핵심 기출)
 
-- **AI 발전 요인**: 계산 능력 증가(GPU), 빅 데이터, 알고리즘 개선(트랜스포머, 전이 학습), 오픈 소스 및 협업이 AI 발전을 이끌었습니다. 연구에 따르면, GPU는 AI 모델 학습 속도를 크게 향상시킵니다.
+시스템 장애 시 응급 복구 모드로 진입하여 문제를 해결하는 능력이 필수입니다.
 
-- **AI 사용 사례와 산업**: 의료(질병 진단, 약물 발견), 금융(사기 탐지, 알고리즘 거래), 자동차(자율 주행, 예측 유지보수), 소매(추천 시스템, 재고 관리), 제조(품질 관리, 예측 유지보수) 등 다양한 산업에서 AI가 적용됩니다. 연구에 따르면, AI는 산업 효율성을 높입니다.
+- **루트 비밀번호 복구**: 부팅 시 GRUB 메뉴를 수정하여 ``rd.break`` 모드로 진입한 후, ``/sysroot``를 다시 마운트하고 root 비밀번호를 초기화하는 작업이 자주 출제됩니다.
+- **부팅 로그 분석**: ``journalctl``을 사용하여 시스템 부팅 과정의 에러를 추적하고 특정 시간대의 로그를 필터링합니다.
 
-- **NVIDIA 솔루션의 목적과 사용 사례**: NVIDIA DGX는 AI 학습 및 추론을 위한 통합 시스템, A100 GPU는 AI 및 HPC 워크로드를 위한 고성능 GPU, Clara는 의료 애플리케이션을 위한 AI 플랫폼, Isaac은 로보틱스 시뮬레이션 및 개발 플랫폼입니다. 연구에 따르면, 이 솔루션은 데이터 센터와 엣지 컴퓨팅에 적합합니다.
+### 4.3 프로세스 및 자원 관리
 
-- **AI 개발 및 배포 소프트웨어**: 데이터 준비(DALI), 모델 학습(TensorFlow, PyTorch), 모델 최적화(TensorRT), 배포(Triton Inference Server), 모니터링 도구를 포함합니다. 연구에 따르면, 이 과정은 AI 생애주기를 효율화합니다.
+- **프로세스 모니터링**: ``top``, ``ps``, ``pgrep`` 등을 사용하여 실행 중인 프로세스를 식별합니다.
+- **프로세스 제어**: ``kill`` 또는 ``pkill``을 사용하여 프로세스를 종료하거나 우선순위(``nice``, ``renice``)를 조정합니다.
+- **성능 프로파일링**: ``tuned`` 서비스를 사용하여 시스템 용도(성능 위주, 절전 위주 등)에 맞는 최적화 프로필을 적용합니다.
 
-- **GPU와 CPU 아키텍처 비교**: CPU는 순차 처리에 적합, 고성능 단일 스레드, GPU는 병렬 처리에 적합, 대규모 행렬 연산에 강점. 연구에 따르면, GPU는 AI 작업에서 CPU보다 효율적입니다.
+### 4.4 네트워크 및 시간 설정
 
-| **주제**                     | **이론 요약**                                                                 |
-|------------------------------|------------------------------------------------------------------------------|
-| NVIDIA 소프트웨어 스택        | CUDA, cuDNN, TensorRT, NGC로 AI 워크로드를 가속화.                          |
-| 학습 vs. 추론 아키텍처        | 학습은 고성능, 추론은 효율성 중점.                                          |
-| AI, ML, DL 개념              | AI는 광범위, ML은 데이터 학습, DL은 신경망 기반.                            |
-| AI 발전 요인                 | 계산력, 데이터, 알고리즘, 협업.                                            |
-| AI 사용 사례                 | 의료, 금융, 자동차 등 산업 적용.                                           |
-| NVIDIA 솔루션                | DGX, A100, Clara, Isaac 등 데이터 센터 및 엣지 사용.                       |
-| 개발 및 배포 소프트웨어       | 데이터 준비, 학습, 최적화, 배포, 모니터링 포함.                            |
-| GPU vs. CPU                  | GPU는 병렬 처리, CPU는 순차 처리에 적합.                                  |
+- **네트워크 상태 관리**: ``nmcli``를 사용하여 네트워크 인터페이스를 활성화/비활성화하고 연결 상태를 관리합니다.
+- **NTP 동기화**: ``chronyd`` 서비스를 구성하여 시스템 시간을 외부 타임 서버와 동기화합니다.
 
-#### AI Infrastructure (40%)
-이 단원은 데이터 분석, 모델 평가, 시각화와 같은 AI 인프라의 실무 기술을 다룹니다. 사용자의 가장 취약한 영역(28%)이므로 집중 학습이 필요합니다. 주요 이론은 다음과 같습니다:
+### 4.5 작업 예약 (Automation)
 
-- **데이터 분석 및 인사이트 추출**: 데이터 마이닝은 클러스터링, 분류, 회귀 등 패턴 발견 기법, 데이터 시각화는 Tableau, Matplotlib 등을 사용해 데이터 결과를 그래프, 차트로 표현합니다. 연구에 따르면, 시각화는 데이터 해석을 쉽게 만듭니다 ([Data Visualization Techniques | DataCamp](https://www.datacamp.com/blog/data-visualization-techniques)).
+- **Cron 작업**: ``crontab``을 사용하여 주기적으로 실행될 작업을 예약합니다.
+- **단일 작업**: ``at`` 명령어를 사용하여 특정 시간에 한 번 실행될 작업을 설정합니다.
 
-- **모델 성능 비교**: 분류 모델은 정확도, 정밀도, 재현율, F1-점수, ROC-AUC, 회귀 모델은 MSE, MAE, R-squared, 딥러닝은 손실 함수(교차 엔트로피, 평균 제곱 오차)로 비교합니다. 연구에 따르면, 이 지표는 모델 선택에 중요합니다 ([11 Important Model Evaluation Metrics | Analytics Vidhya](https://www.analyticsvidhya.com/blog/2021/11/11-important-model-evaluation-metrics/)).
+> ⚠️ **중요**: 모든 설정은 재부팅 후에도 유지되어야 함을 명심하십시오.
 
-- **데이터 분석 수행**: 데이터 수집, 정제, 탐색, 모델링, 평가 단계를 포함하며, 선임 팀원의 감독 아래 수행합니다. 연구에 따르면, 데이터 정제는 분석 정확도를 높입니다.
+---
 
-- **데이터 시각화**: 히스토그램, 산점도, 박스 플롯, 히트맵 등 시각화 유형을 사용해 데이터 결과를 표현합니다. 연구에 따르면, 시각화는 의사결정에 도움을 줍니다.
+## 5. Configure local storage
 
-- **연구 결과 분석**: 상관 분석, 회귀 분석, 시계열 분석, 이상 탐지를 통해 관계, 트렌드, 요인을 식별합니다. 연구에 따르면, 이 과정은 연구 결과를 해석하는 데 필수적입니다.
+2026년 기준 RHCSA 10(EX200) 시험에서 로컬 스토리지 구성(Configure local storage) 영역은 파티션 관리, LVM(Logical Volume Manager) 및 파일 시스템 설정을 포함하는 핵심 실습 과제입니다.
 
-| **주제**                     | **이론 요약**                                                                 |
-|------------------------------|------------------------------------------------------------------------------|
-| 데이터 분석 및 인사이트       | 마이닝과 시각화로 패턴 발견, Tableau, Matplotlib 사용.                      |
-| 모델 성능 비교               | 정확도, MSE, 손실 함수로 모델 평가.                                         |
-| 데이터 분석 수행             | 수집, 정제, 탐색, 모델링, 평가 단계 포함.                                  |
-| 데이터 시각화                | 히스토그램, 산점도 등으로 데이터 표현.                                     |
-| 연구 결과 분석               | 상관, 회귀, 시계열, 이상 탐지로 관계 식별.                                 |
+### 5.1 파티션 및 파일 시스템 생성
 
-#### AI Operations (22%)
-이 단원은 AI 시스템의 운영 및 관리에 중점을 둡니다. 주요 이론은 다음과 같습니다:
+전통적인 디스크 파티션과 파일 시스템 구축 능력을 평가합니다.
 
-- **데이터 센터 관리 및 모니터링**: 자원 관리(컴퓨팅, 저장소, 네트워킹), 모니터링 도구(Prometheus, Grafana, NVIDIA DCGM)로 시스템 성능 추적. 연구에 따르면, 모니터링은 시스템 안정성을 높입니다 ([AI Power: Expanding Data Center Capacity | McKinsey](https://www.mckinsey.com/business-functions/mckinsey-digital/our-insights/ai-power-expanding-data-center-capacity)).
+- **파티션 도구**: ``fdisk`` 또는 ``parted``를 사용하여 MBR 및 GPT 파티션을 생성, 수정, 삭제합니다.
+- **파일 시스템 구축**: 생성한 파티션을 XFS(RHEL 10 기본) 또는 Ext4 형식으로 포맷합니다. (``mkfs.xfs``, ``mkfs.ext4``)
+- **영구 마운트**: 재부팅 후에도 유지되도록 ``/etc/fstab``에 UUID 또는 장치명을 등록하고 마운트 지점을 설정해야 합니다.
 
-- **클러스터 오케스트레이션 및 작업 스케줄링**: Kubernetes로 컨테이너화된 애플리케이션 관리, Slurm으로 배치 작업 스케줄링. 연구에 따르면, Kubernetes는 AI 워크로드를 확장하는 데 이상적입니다 ([Kubernetes Documentation](https://kubernetes.io/docs/)).
+### 5.2 LVM(Logical Volume Manager) 관리 (가장 중요)
 
-- **GPU 모니터링**: GPU 사용률, 메모리 사용량, 온도, 전력 소비 모니터링. 도구는 nvidia-smi, DCGM 사용. 연구에 따르면, 모니터링은 성능 최적화에 중요합니다.
+유연한 스토리지 관리를 위한 LVM 구성은 매 시험 필수적으로 출제됩니다.
 
-- **가상화 고려 사항**: vGPU는 물리적 GPU를 여러 VM에서 공유, MIG는 단일 GPU를 여러 인스턴스로 분할. 이점은 자원 활용, 격리, 도전은 성능 오버헤드, 호환성. 연구에 따르면, 가상화는 자원 효율성을 높입니다 ([AI Orchestration | Pure Storage](https://www.purestorage.com/knowledge/ai-orchestration.html)).
+- **기본 구성**: 물리 볼륨(PV), 볼륨 그룹(VG), 논리 볼륨(LV)을 순차적으로 생성합니다.
+- **용량 확장**: 기존 볼륨 그룹에 새 디스크를 추가하거나, 논리 볼륨의 크기를 온라인 상태에서 확장(``lvextend -r``)하는 작업을 수행합니다.
+- **스왑(Swap) 구성**: 파일 시스템뿐만 아니라 논리 볼륨 기반의 스왑 파티션을 생성하고 활성화합니다.
 
-| **주제**                     | **이론 요약**                                                                 |
-|------------------------------|------------------------------------------------------------------------------|
-| 데이터 센터 관리             | 자원 관리, 모니터링 도구(Prometheus, DCGM) 사용.                            |
-| 클러스터 오케스트레이션      | Kubernetes, Slurm으로 관리, 확장성 보장.                                    |
-| GPU 모니터링                 | 사용률, 온도, nvidia-smi, DCGM으로 모니터링.                                |
-| 가상화 고려 사항             | vGPU, MIG로 자원 공유, 성능 오버헤드 도전.                                 |
+### 5.3 VDO(Virtual Data Optimizer) 및 계층화 스토리지 (RHEL 10)
 
-#### 결론
-사용자는 AI Infrastructure 단원에 집중하며, 데이터 분석과 모델 평가 기술을 강화해야 합니다. NVIDIA 관련 주제와 실무 운영 기술도 중요하며, 추천 자료를 활용하면 시험 준비를 효과적으로 할 수 있습니다.
+RHEL 10에서는 중복 제거 및 압축 기능을 제공하는 VDO 기술에 대한 관리가 포함될 수 있습니다.
 
-#### Key Citations
-- [NVIDIA AI Infrastructure Documentation](https://docs.nvidia.com/ai-enterprise/index.html)
-- [Data Visualization Techniques](https://www.datacamp.com/blog/data-visualization-techniques)
-- [11 Important Model Evaluation Metrics](https://www.analyticsvidhya.com/blog/2021/11/11-important-model-evaluation-metrics/)
-- [AI Power: Expanding Data Center Capacity](https://www.mckinsey.com/business-functions/mckinsey-digital/our-insights/ai-power-expanding-data-center-capacity)
-- [Kubernetes Documentation](https://kubernetes.io/docs/)
-- [AI Orchestration](https://www.purestorage.com/knowledge/ai-orchestration.html)
+- **VDO 생성**: ``vdo create`` 또는 lvm 통합 명령어를 사용하여 데이터 효율성을 높인 볼륨을 구성합니다.
+- **성능 관리**: 스토리지 최적화 프로필을 적용하기 위해 ``tuned`` 서비스를 연계하여 활용합니다.
+
+### 5.4 스토리지 보안 및 권한
+
+- **ACL(Access Control List)**: 특정 사용자나 그룹에 대해 파일 시스템 수준의 상세 권한(``setfacl``)을 부여합니다.
+- **쿼터(Quota)**: 사용자별로 사용할 수 있는 디스크 용량을 제한하는 설정을 요구할 수 있습니다.
+
+### 5.5 실전 팁
+
+| 항목 | 설명 |
+|------|------|
+| **마운트 확인** | 반드시 ``mount -a`` 명령어로 ``/etc/fstab`` 설정의 오류 여부를 확인한 후 재부팅하십시오. 설정 오류 시 부팅이 실패할 수 있습니다. |
+| **UUID 활용** | ``/etc/fstab`` 작성 시 장치명(예: ``/dev/sdb1``) 대신 ``blkid``로 확인한 UUID를 사용하는 것이 권장됩니다. |
+
+---
+
+## 6. Create and configure file systems
+
+2026년 기준 RHCSA 10(EX200) 시험에서 파일 시스템 생성 및 구성(Create and configure file systems) 영역은 데이터를 저장하고 관리하기 위한 실무적인 능력을 평가합니다. 모든 설정은 반드시 **재부팅 후에도 유지(Persistent)**되어야 합니다.
+
+### 6.1 파일 시스템 생성 및 마운트
+
+- **파일 시스템 유형**: RHEL 10의 기본 파일 시스템인 XFS와 더불어 ext4 형식을 생성할 수 있어야 합니다. (``mkfs.xfs``, ``mkfs.ext4``)
+- **UUID 활용**: ``/etc/fstab``에 마운트 정보를 등록할 때, 장치 이름(``/dev/sdb1``) 대신 ``blkid`` 명령어로 확인한 UUID를 사용하여 안정성을 확보해야 합니다.
+- **영구 마운트**: 특정 디렉토리에 파일 시스템을 연결하고, 시스템 재시작 시 자동으로 마운트되도록 설정합니다.
+
+### 6.2 스왑(Swap) 공간 관리
+
+시스템 메모리가 부족할 때 사용할 스왑 영역을 구성합니다.
+
+- **생성**: 파티션이나 논리 볼륨(LV)을 스왑 구역으로 지정합니다. (``mkswap``)
+- **활성화**: ``swapon``을 통해 활성화하고, ``/etc/fstab``에 등록하여 부팅 시마다 적용되게 합니다.
+
+### 6.3 네트워크 파일 시스템 (NFS) 구성
+
+네트워크를 통해 원격 저장소를 사용하는 능력을 평가합니다.
+
+- **NFS 클라이언트 설정**: 원격 서버에서 제공하는 NFS 공유 디렉토리를 로컬 시스템의 특정 지점에 마운트합니다.
+- **Autofs 활용**: 필요한 경우에만 자동으로 마운트되고 사용하지 않을 때 해제되는 ``autofs`` 서비스를 구성하는 기능이 자주 출제됩니다.
+
+### 6.4 파일 시스템 보안 및 속성
+
+- **권한 및 소유권**: ``chown``, ``chgrp``, ``chmod``를 사용하여 파일 시스템 내 디렉토리 권한을 설정합니다.
+- **ACL(Access Control List)**: 표준 권한으로 부족한 경우 ``setfacl``을 사용하여 특정 사용자/그룹에 세부 권한을 부여합니다.
+- **특수 권한**: 공유 디렉토리에서 새로 생성된 파일이 그룹 소유권을 상속받도록 하는 **SGID(Set Group ID)** 설정을 구성해야 합니다.
+
+### 6.5 실전 핵심 체크리스트
+
+- [ ] **Mount -a 실행**: ``/etc/fstab`` 수정 후 반드시 ``mount -a``를 실행하여 오타로 인한 부팅 실패를 방지하십시오.
+- [ ] **디렉토리 생성**: 마운트 지점이 될 디렉토리가 실제로 존재하는지 확인하십시오.
+- [ ] **SELinux 컨텍스트**: 파일 시스템 마운트 후 해당 위치의 SELinux 보안 문맥이 올바른지 확인하고 필요한 경우 ``restorecon``을 실행하십시오.
+
+---
+
+## 7. Deploy, configure and maintain systems
+
+2026년 기준 RHCSA 10(EX200) 시험의 시스템 배포, 구성 및 유지관리(Deploy, configure and maintain systems) 영역은 서버의 초기 환경 설정부터 보안 정책 적용까지 전반적인 관리 능력을 평가합니다.
+
+### 7.1 네트워크 및 호스트 설정
+
+- **정적 호스트 이름 설정**: ``hostnamectl`` 명령을 사용하여 시스템의 영구적인 호스트 이름을 설정합니다.
+- **네트워크 인터페이스 구성**: ``nmcli`` 도구를 사용하여 IP 주소(IPv4/IPv6), 서브넷 마스크, 게이트웨이 및 DNS를 정적으로 구성합니다.
+- **시간 동기화**: ``chronyd``를 설정하여 공식 타임 서버와 시스템 시간을 동기화하도록 구성합니다.
+
+### 7.2 자동화된 설치 및 구성
+
+- **Kickstart 활용**: 소프트웨어 배포 자동화를 위해 Kickstart 파일을 사용하여 시스템 설치를 자동화하는 기본 원리를 이해해야 합니다.
+- **작업 예약**: ``cron`` 또는 ``at``을 사용하여 시스템 유지보수 스크립트가 정해진 시간에 자동 실행되도록 예약합니다.
+
+### 7.3 커널 및 프로세스 유지관리
+
+- **부팅 매개변수 수정**: GRUB 구성을 변경하여 특정 커널 매개변수를 적용하거나 부팅 모드를 수정합니다.
+- **성능 최적화**: ``tuned`` 서비스를 활용하여 시스템 용도(서버, 가상화 호스트 등)에 맞는 최적의 성능 프로파일을 적용합니다.
+- **시스템 로그 관리**: ``journalctl``을 사용하여 시스템 서비스의 오류를 진단하고 로그 보존 정책을 확인합니다.
+
+### 7.4 SELinux 보안 유지 (매우 중요)
+
+시스템 보안 유지를 위해 SELinux 설정은 필수입니다.
+
+- **모드 설정**: SELinux를 ``Enforcing`` 또는 ``Permissive`` 모드로 구성합니다.
+- **컨텍스트 복구**: 파일이나 포트의 보안 문맥(Context)이 잘못된 경우 ``restorecon`` 또는 ``semanage``를 사용하여 올바르게 수정합니다.
+- **Boolean 관리**: ``getsebool``, ``setsebool``을 사용하여 서비스별 보안 정책(예: Apache의 사용자 홈 디렉토리 접근 허용 등)을 실시간으로 제어합니다.
+
+### 7.5 소프트웨어 및 서비스 배포
+
+- **저장소 관리**: 공식 Red Hat 저장소 또는 로컬 저장소를 시스템에 등록합니다.
+- **시스템 서비스 관리**: 특정 네트워크 서비스(예: SSH, HTTPD)가 부팅 시 자동으로 시작되도록 ``systemctl``로 관리합니다.
+
+> 💡 **실무 팁**: 2026년 RHCSA 10 시험에서는 모든 설정이 재부팅 후에도 유지되어야 하므로, 설정을 마친 후 반드시 ``reboot``을 수행하여 서비스 상태와 네트워크 연결을 최종 확인하는 것이 합격의 핵심입니다.
+
+---
+
+## 8. Manage basic networking
+
+2026년 기준 RHCSA 10(EX200) 시험에서 기본 네트워크 관리(Manage basic networking) 영역은 시스템이 네트워크에 연결되고, 올바른 호스트 정보를 가지며, 외부 서버와 시간을 동기화하는 능력을 평가합니다. RHEL 10에서는 **NetworkManager(``nmcli``)**와 ``chronyd``의 활용이 핵심입니다.
+
+### 8.1 IPv4 및 IPv6 주소 구성
+
+정적(Static) IP 주소 설정은 매 시험 출제되는 필수 과제입니다.
+
+- **IP 주소 설정**: ``nmcli`` 명령어를 사용하여 인터페이스에 IP 주소, 서브넷 마스크(Prefix), 게이트웨이를 할당합니다.
+- **DNS 구성**: ``/etc/resolv.conf``를 직접 수정하는 대신 ``nmcli con mod``를 통해 DNS 서버 주소를 등록해야 합니다.
+- **영구성 적용**: 설정을 마친 후 ``nmcli con up <인터페이스명>``을 실행하여 즉시 적용하고, 재부팅 후에도 주소가 유지되는지 확인해야 합니다.
+
+### 8.2 호스트 이름 및 이름 확인
+
+- **호스트 이름 설정**: ``hostnamectl set-hostname <FQDN>`` 명령을 사용하여 시스템의 정적 호스트 이름을 설정합니다.
+- **로컬 이름 확인**: ``/etc/hosts`` 파일을 수정하여 특정 도메인 이름과 IP 주소를 매핑하는 능력을 평가합니다.
+
+### 8.3 네트워크 시간 동기화 (NTP)
+
+서버 간의 로그 일치 및 인증 처리를 위해 정확한 시간 동기화가 필수적입니다.
+
+- **chronyd 설정**: ``/etc/chrony.conf`` 파일을 수정하여 지정된 NTP 서버(예: ``pool.ntp.org`` 또는 시험용 서버 주소)와 동기화되도록 설정합니다.
+- **상태 확인**: ``chronyc sources -v`` 명령을 통해 시스템 시간이 외부 서버와 올바르게 동기화되고 있는지 확인해야 합니다.
+
+### 8.4 네트워크 서비스 제어
+
+- **인터페이스 관리**: ``nmcli device`` 및 ``nmcli connection`` 명령을 사용하여 네트워크 연결의 상태를 조회하고 활성화/비활성화합니다.
+- **방화벽 연동**: 네트워크 구성 후 해당 서비스가 통신 가능하도록 ``firewall-cmd``를 통해 포트를 개방하는 작업이 병행되는 경우가 많습니다.
+
+### 8.5 핵심 실전 명령어 예시
+
+```bash
+# 정적 IPv4 설정 예시
+nmcli con mod eth0 ipv4.addresses 192.168.1.10/24 ipv4.gateway 192.168.1.1 ipv4.method manual
+nmcli con mod eth0 ipv4.dns "8.8.8.8 8.8.4.4"
+nmcli con up eth0
+
+# 호스트 이름 변경
+hostnamectl set-hostname node1.example.com
+```
+
+> ⚠️ **주의 사항**: 시험 환경에서는 네트워크 설정이 잘못되면 시스템 접속 자체가 불가능해질 수 있으므로, 설정을 저장하기 전 문법을 다시 확인하고 반드시 ``nmcli connection show``를 통해 적용 상태를 점검하십시오.
+
+---
+
+## 9. Manage users and groups
+
+2026년 기준 RHCSA 10(EX200) 시험에서 사용자 및 그룹 관리(Manage users and groups) 영역은 시스템 보안 및 권한 관리의 기초를 평가합니다. 단순한 계정 생성을 넘어, 특정 정책에 따른 정밀한 설정 능력을 요구합니다.
+
+### 9.1 사용자 계정 관리
+
+- **사용자 생성 및 수정**: ``useradd``, ``usermod`` 명령어를 사용하여 계정을 생성하고 속성을 변경합니다.
+- **사용자 속성 설정**: 특정 UID 지정, 기본 셸 설정, 보조 그룹(Supplementary Groups) 할당 능력을 평가합니다.
+- **계정 삭제**: ``userdel -r``을 사용하여 사용자의 홈 디렉토리까지 안전하게 삭제하는 방법을 숙지해야 합니다.
+
+### 9.2 그룹 관리
+
+- **그룹 생성**: ``groupadd``를 사용하여 새로운 시스템 그룹을 생성하고 특정 GID를 부여합니다.
+- **멤버십 관리**: 사용자를 특정 그룹에 추가하거나 제거하는 작업을 수행합니다. (``usermod -aG`` 또는 ``gpasswd``)
+
+### 9.3 암호 및 보안 정책 (핵심 기출)
+
+보안 강화를 위한 암호 정책 설정이 자주 출제됩니다.
+
+- **암호 할당**: ``passwd`` 명령어로 사용자 암호를 설정합니다.
+- **암호 만료 정책**: ``chage`` 명령어를 사용하여 암호의 최소/최대 사용 기간, 만료 전 경고 일수, 계정 잠금 날짜 등을 설정해야 합니다.
+  - **예시**: 암호를 90일마다 변경하도록 설정하고 만료 7일 전 경고 메시지를 출력하도록 구성.
+
+### 9.4 중앙 집중식 인증 관리
+
+- **ID 관리 서비스 연계**: 시험 환경에서 이미 제공된 LDAP 또는 IPA(Identity Management) 서버를 사용하여 사용자를 인증하도록 시스템을 구성하는 능력이 포함될 수 있습니다. (``authselect`` 도구 활용)
+
+### 9.5 실전 핵심 팁
+
+| 항목 | 설명 |
+|------|------|
+| **비대화식 설정** | 시험의 효율성을 위해 암호를 설정할 때 ``echo "password" | passwd --stdin username``과 같이 파이프라인을 활용하는 연습이 필요합니다. |
+| **파일 권한과 연계** | 그룹 관리 작업은 보통 특정 디렉토리에 대한 SGID(Set Group ID) 설정 문제와 연결되어 출제되는 경우가 많습니다. (예: "공유 디렉토리의 소유 그룹을 admins로 설정하고 생성된 모든 파일이 해당 그룹을 상속받게 하라") |
+
+> 📝 모든 사용자 및 그룹 정보는 재부팅 후에도 ``/etc/passwd``와 ``/etc/group``에 올바르게 유지되어야 합니다.
+
+---
+
+## 10. Manage security
+
+2026년 기준 RHCSA 10(EX200) 시험에서 보안 관리(Manage security) 영역은 시스템 접근 제어와 네트워크 방어의 핵심입니다. RHEL 10 환경에서는 특히 **SELinux**와 **Firewalld**의 정밀한 제어 능력을 평가합니다.
+
+### 10.1 방화벽 관리 (Firewalld)
+
+네트워크 트래픽을 제어하여 시스템을 보호하는 능력을 평가합니다.
+
+- **서비스 및 포트 제어**: ``firewall-cmd``를 사용하여 특정 서비스(예: ``http``, ``ssh``)나 포트(예: ``8080/tcp``)를 허용 또는 차단합니다.
+- **영구 설정 적용**: 모든 설정은 ``--permanent`` 옵션을 사용하고 ``firewall-cmd --reload``를 통해 재부팅 후에도 유지되어야 합니다.
+- **존(Zone) 관리**: 기본 영역(``public``) 외에 특정 네트워크 인터페이스를 다른 존(예: ``internal``, ``dmz``)에 할당하는 작업이 포함될 수 있습니다.
+
+### 10.2 SELinux 보안 정책 (가장 중요)
+
+파일 시스템과 프로세스 간의 세밀한 권한 제어를 담당합니다.
+
+- **모드 설정**: 시스템 전체의 SELinux 상태를 ``Enforcing``으로 유지해야 점수가 인정되는 경우가 많습니다. (``/etc/selinux/config`` 수정)
+- **컨텍스트(Context) 수정**: 웹 서버나 데이터베이스의 경로를 변경했을 때, ``semanage fcontext``와 ``restorecon``을 사용하여 올바른 보안 문맥을 할당해야 합니다.
+- **불리언(Booleans) 관리**: ``setsebool -P`` 명령어를 사용하여 시스템 서비스의 특정 기능을 허용(예: Apache의 네트워크 연결 허용)하도록 설정합니다.
+
+### 10.3 파일 권한 및 ACL
+
+- **특수 권한**: SUID, SGID, Sticky Bit를 적절한 파일 및 디렉토리에 설정하여 보안 및 협업 환경을 구축합니다.
+- **ACL(Access Control List)**: 표준 권한(``rwx``)으로 해결할 수 없는 사용자별/그룹별 세부 권한을 ``setfacl``로 관리합니다.
+
+### 10.4 SSH 보안 및 인증
+
+- **키 기반 인증**: 비밀번호 없이 안전하게 접속하기 위해 SSH 키 쌍을 생성하고 원격 서버에 공개키를 배포하는 능력을 평가합니다.
+- **SSH 서버 설정**: ``/etc/ssh/sshd_config``를 수정하여 루트 로그인 제한이나 특정 사용자의 접근을 차단하는 설정이 요구될 수 있습니다.
+
+### 10.5 암호 정책 및 접근 제한
+
+- **비밀번호 강제**: 사용자가 보안 가이드라인에 맞는 강력한 암호를 사용하도록 정책을 설정합니다.
+- **로그인 제어**: 특정 시간대나 특정 단말기에서의 접근을 제한하는 설정이 포함될 수 있습니다.
+
+> 🔒 **실전 팁**: 2026년 RHCSA 10 시험에서 SELinux 설정 오류는 서비스 중단의 원인이 되므로, 작업 후 반드시 ``setenforce 1`` 상태에서도 서비스가 정상 작동하는지 확인하십시오.
+
+---
+
+## 참고 자료
+
+- [Red Hat EX200 공식 시험 목표](https://www.redhat.com/en/services/training/ex200-red-hat-certified-system-administrator-rhcsa-exam)
+- [Red Hat Enterprise Linux 10 문서](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/)
+- [Red Hat 스토리지 관리 가이드](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/)
+- [Red Hat 보안 강화 가이드](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/)
